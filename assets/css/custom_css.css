@@ -1,0 +1,334 @@
+/* =========================
+   CUSTOM CSS – CLEAN BASE
+========================= */
+
+/* =========================
+   HEADER – REVEAL TEXT
+========================= */
+
+header.major p.reveal-left {
+  display: inline-block;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInText 0.4s ease-out forwards;
+  line-height: 1.3;
+}
+
+header.major p.reveal-left span {
+  display: inline-block;
+  transform: translate(-30px, 20px);
+  opacity: 0;
+  animation: slideUp 0.6s cubic-bezier(.25,.8,.25,1) forwards;
+}
+
+header.major p.reveal-left span:nth-child(1) { animation-delay: .2s; }
+header.major p.reveal-left span:nth-child(2) { animation-delay: .35s; }
+header.major p.reveal-left span:nth-child(3) { animation-delay: .5s; }
+header.major p.reveal-left span:nth-child(4) { animation-delay: .65s; }
+
+@keyframes fadeInText {
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  to {
+    transform: translate(0,0);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   STROKE TITLE
+========================= */
+
+.stroke-title {
+  display: inline-block;
+  position: relative;
+  line-height: 1;
+}
+
+/* =========================
+   ICONS GRID – FIX
+========================= */
+
+ul.icons-grid li svg {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 736px) {
+  header.major p.reveal-left {
+    line-height: 1.2;
+  }
+}
+
+
+
+
+/* === Hamburger button === */
+
+.hamburger {
+  all: unset;                 /* reset stylów z szablonu */
+  position: fixed;            /* względem ekranu */
+  top: 1.21rem;
+  right: 1.2rem;
+  width: 32px;
+  height: 24px;
+  padding: 6px;
+  cursor: pointer;
+  z-index: 2000;
+  background: rgba(255,255,255,0.7);
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #1769bf;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+.hamburger span:last-child {
+  margin-bottom: 0;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+
+/* === Mobile menu panel === */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100vh;
+  background: #343a40;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+  padding-top: 5rem; /* miejsce na hamburger */
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  z-index: 1500;
+  pointer-events: auto;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 2rem 1.5rem;
+}
+
+.mobile-menu li {
+  margin-bottom: 1.5rem;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f8f9fa;
+}
+
+/* === Mobile menu overlay === */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 1400;
+}
+
+/* overlay aktywny */
+.menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+body.menu-open #wrapper {
+  overflow: hidden;
+  height: 100vh;
+}
+
+#wrapper::before,
+#wrapper::after,
+.main::before,
+.main::after,
+.main-bg::before,
+.main-bg::after {
+  pointer-events: none;
+}
+
+.header-stroke-svg {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  margin: 0.6em auto 0;
+}
+
+/* wspólna animacja */
+.header-stroke-svg line {
+  stroke-dasharray: 350;
+  stroke-dashoffset: 350;
+  transition: stroke-dashoffset 1.8s cubic-bezier(.22,1,.36,1);
+}
+
+/* animacja startowa */
+.header-stroke-svg.stroke-animate .stroke-left,
+.header-stroke-svg.stroke-animate .stroke-right {
+  stroke-dashoffset: 0;
+}
+
+/* subtelne „zlanie” kolorów */
+.header-stroke-svg .stroke-left {
+  opacity: 0.9;
+}
+
+.header-stroke-svg .stroke-right {
+  opacity: 0.9;
+}
+
+/* delikatne „zlanie” kolorów w środku */
+.header-stroke-svg.glow .stroke-left,
+.header-stroke-svg.glow .stroke-right {
+  opacity: 1;
+}
+
+/* === FIX HERO LAYOUT (desktop) === */
+@media (min-width: 769px) {
+
+  /* wyłącz pseudo-element centrowania */
+  #header:after {
+    display: none;
+  }
+
+  /* reset inline-block trick */
+  #header header {
+    display: block;
+    padding-bottom: 0;
+    vertical-align: initial;
+  }
+
+}
+
+@media (min-width: 769px) {
+
+  #header {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  #header .container {
+    width: 100%;
+  }
+
+}
+
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}
+/* === HERO CTA: wyłącz biały panel Big Picture === */
+@media (min-width: 769px) {
+  #header > .container {
+    position: static;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+/* === FIX: header.major MUST NOT be fixed === */
+@media (min-width: 769px) {
+  #header header.major {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    margin: 0 auto;
+    pointer-events: auto;
+  }
+}
+@media (min-width: 769px) {
+  #header header.major {
+    pointer-events: none;
+  }
+
+  #header > .container,
+  #header > .container * {
+    pointer-events: auto;
+  }
+}
+/* === CLEAN HERO LAYOUT (desktop) === */
+@media (min-width: 769px) {
+  #header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #header header.major {
+    position: relative;
+  }
+
+  #header > .container {
+    margin-top: 37vh;
+  }
+}
+@media (min-width: 769px) {
+  #header > .container {
+    animation: ctaFadeUp 0.9s ease-out both;
+    animation-delay: 0.4s;
+  }
+}
+
+@keyframes ctaFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
